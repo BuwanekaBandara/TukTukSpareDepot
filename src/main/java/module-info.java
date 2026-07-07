@@ -5,4 +5,6 @@ module org.example.tuktuksparedepot {
 
     opens org.example.tuktuksparedepot to javafx.fxml;
     exports org.example.tuktuksparedepot;
+    exports org.example.tuktuksparedepot.objects;
+    opens org.example.tuktuksparedepot.objects to javafx.fxml;
 }
