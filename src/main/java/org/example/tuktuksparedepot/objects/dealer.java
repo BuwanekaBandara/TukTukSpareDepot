@@ -1,21 +1,30 @@
 package org.example.tuktuksparedepot.objects;
 
-public class dealers {
+public class dealer {
     private String dealerId;
     private String dealerName;
     private String phoneNum;
     private String location;
 
+    public dealer(String dealerId,String dealerName,String phoneNum,String location){
+        setDealerId(dealerId);
+        setDealerName(dealerName);
+        setPhoneNum(phoneNum);
+        setLocation(location);
+    }
+
     public String getDealerId(){
         return dealerId;
     }
     public void setDealerId(String dealerId){
-        String fmtDealerId = dealerId.trim().toUpperCase();
-        if (fmtDealerId.length()!=4 || fmtDealerId.charAt(0)!='P'){
+        if (dealerId==null||dealerId.trim().isEmpty()){
+            System.out.println("Dealer ID cannot be empty");
+        }
+        else if (dealerId.trim().length()!=4 || dealerId.trim().toUpperCase().charAt(0)!='D'){
             System.out.println("Invalid dealerId.Follow this pattern (Dxxx)");
         }
         else{
-            this.dealerId=fmtDealerId;
+            this.dealerId=dealerId.trim().toUpperCase();
         }
     }
 
@@ -42,6 +51,7 @@ public class dealers {
         String fmtPhoneNum = phoneNum.trim();
         if(fmtPhoneNum.length()!=10){
             System.out.println("Invalid Phone Number");
+            this.phoneNum="No Phone Number";
         }
         else{
             this.phoneNum=fmtPhoneNum;
@@ -56,15 +66,8 @@ public class dealers {
             this.location="No location";
         }
         else{
-            this.location=location;
+            this.location=location.trim();
         }
-    }
-
-    public dealers(String dealerId,String dealerName,String phoneNum,String location){
-        setDealerId(dealerId);
-        setDealerName(dealerName);
-        setPhoneNum(phoneNum);
-        setLocation(location);
     }
 
     @Override

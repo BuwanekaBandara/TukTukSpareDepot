@@ -29,14 +29,12 @@ public class sparePart {
     public void setPartCode(String partCode) {
         if (partCode==null||partCode.trim().isEmpty()){
             System.out.println("Part code cannot be empty");
-            return;
         }
-        String fmtPartCode = partCode.trim().toUpperCase();
-        if ((fmtPartCode.length() != 4) || (fmtPartCode.charAt(0) != 'P')) {
+        else if (partCode.trim().length() != 4 || partCode.trim().toUpperCase().charAt(0) != 'P') {
             System.out.println("Invalid Part Code.Follow this pattern (Pxxx)");
-
-        } else {
-            this.partCode = fmtPartCode;
+        }
+        else {
+            this.partCode = partCode.trim().toUpperCase();
         }
     }
 
@@ -47,7 +45,8 @@ public class sparePart {
     public void setPartName(String partName) {
         if (partName == null || partName.trim().isEmpty()) {
             System.out.println("Part Name cannot be empty");
-        } else {
+        }
+        else {
             this.partName = partName;
         }
 
@@ -59,9 +58,9 @@ public class sparePart {
 
     public void setBrand(String brand) {
         if (brand == null || brand.trim().isEmpty()) {
-            this.brand = "null";
+            this.brand = "No brand";
         } else {
-            this.brand = brand;
+            this.brand = brand.trim();
         }
     }
 
@@ -95,7 +94,7 @@ public class sparePart {
 
     public void setCategory(String category) {
         if (category == null || category.trim().isEmpty()) {
-            this.category = "no Category";
+            this.category = "No category";
         } else {
             this.category = category;
         }
@@ -107,7 +106,7 @@ public class sparePart {
 
     public void setDate(String date) {
         if (date == null || date.trim().isEmpty()) {
-            this.date = "null";
+            this.date = "No date";
         } else {
             this.date = date;
         }
@@ -119,7 +118,7 @@ public class sparePart {
 
     public void setImg(String img) {
         if (img == null || img.trim().isEmpty()) {
-            this.img = "no Image";
+            this.img = "No image";
         }
         else {
             this.img = img;
@@ -128,6 +127,6 @@ public class sparePart {
 
     @Override
     public String toString() {
-        return partCode+","+partName+","+brand+","+price+","+quantity+","+category+","+date+","+img;
+        return partCode+"|"+partName+"|"+brand+"|"+price+"|"+quantity+"|"+category+"|"+date+"|"+img;
     }
 }
