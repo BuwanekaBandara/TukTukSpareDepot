@@ -7,7 +7,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class fileHandle {
+public class InventoryLoad {
 
     public ArrayList<sparePart> inventoryRead(){
         ArrayList<sparePart> parts=new ArrayList<sparePart>();

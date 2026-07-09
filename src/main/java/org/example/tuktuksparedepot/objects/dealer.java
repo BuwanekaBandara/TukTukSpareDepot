@@ -36,7 +36,7 @@ public class dealer {
             System.out.println("Dealer name cannot be empty");
         }
         else{
-            this.dealerName=dealerName;
+            this.dealerName=dealerName.trim();
         }
     }
 
@@ -46,15 +46,12 @@ public class dealer {
     public void setPhoneNum(String phoneNum){
         if (phoneNum==null||phoneNum.isEmpty()){
             this.phoneNum="No Phone Number";
-            return;
         }
-        String fmtPhoneNum = phoneNum.trim();
-        if(fmtPhoneNum.length()!=10){
-            System.out.println("Invalid Phone Number");
+        else if(phoneNum.trim().length()!=10){
             this.phoneNum="No Phone Number";
         }
         else{
-            this.phoneNum=fmtPhoneNum;
+            this.phoneNum=phoneNum.trim();
         }
     }
 
