@@ -1,4 +1,4 @@
-package org.example.tuktuksparedepot;
+package org.example.tuktuksparedepot.fileHandling;
 
 import org.example.tuktuksparedepot.objects.dealer;
 import java.util.ArrayList;
