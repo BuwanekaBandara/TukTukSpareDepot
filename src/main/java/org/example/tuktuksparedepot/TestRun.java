@@ -18,7 +18,9 @@ public class TestRun {
         }*/
 
         InventoryOp read=new InventoryOp();
-        System.out.println(read.getAllParts());
+        for(int i=0;i<read.sortedInventory().size();i++){
+            System.out.println(read.sortedInventory().get(i).getCategory()+" | "+read.sortedInventory().get(i).getPartCode());
+        }
 
 
     }

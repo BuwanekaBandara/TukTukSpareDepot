@@ -113,6 +113,27 @@ public class InventoryOp {
         return lowStock;
     }
 
+    public ArrayList<sparePart> sortedInventory(){
+        ArrayList<sparePart> sortedList=new ArrayList<sparePart>(parts);
+        for(int i=0;i<sortedList.size()-1;i++){
+            for(int j=0;j<sortedList.size()-1-i;j++){
+                if(sortedList.get(j).getCategory().compareTo(sortedList.get(j+1).getCategory())>0){
+                    sparePart temp=sortedList.get(j);
+                    sortedList.set(j,sortedList.get(j+1));
+                    sortedList.set(j+1,temp);
+                }
+                else if(sortedList.get(j).getCategory().compareTo(sortedList.get(j+1).getCategory())==0){
+                    if(sortedList.get(j).getPartCode().substring(1).compareTo(sortedList.get(j+1).getPartCode().substring(1))>0){
+                        sparePart temp=sortedList.get(j);
+                        sortedList.set(j,sortedList.get(j+1));
+                        sortedList.set(j+1,temp);
+                    }
+                }
+            }
+        }
+        return sortedList;
+    }
+
 
 
 }
