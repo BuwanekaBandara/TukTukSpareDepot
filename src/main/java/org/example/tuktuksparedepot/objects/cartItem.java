@@ -23,11 +23,12 @@ public class cartItem {
         this.part=part;
     }
 
-    public int getQuantity(){
+    public int getCartQuantity(){
         return quantity;
     }
     public void setCartQuantity(int quantity){
         if(quantity<=0 || quantity> part.getQuantity()){
+            this.quantity=1;
             System.out.println("Invalid quantity");
             return;
         }
