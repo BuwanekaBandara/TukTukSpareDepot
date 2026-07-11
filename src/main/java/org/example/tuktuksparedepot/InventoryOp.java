@@ -194,5 +194,22 @@ public class InventoryOp {
     }
 
 
+    public int totalQuantity(){
+        int totalQuant=0;
+        for(int i=0;i<parts.size();i++){
+            totalQuant+=parts.get(i).getQuantity();
+        }
+        return totalQuant;
+    }
+
+    public double totalPrice(){
+        double totalPrice=0;
+        for(int i=0;i<parts.size();i++){
+            totalPrice+=(parts.get(i).getPrice()*parts.get(i).getQuantity());
+        }
+        return totalPrice;
+    }
+
+
 
 }
