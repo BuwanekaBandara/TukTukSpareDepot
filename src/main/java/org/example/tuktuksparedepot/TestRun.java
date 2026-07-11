@@ -1,6 +1,7 @@
 package org.example.tuktuksparedepot;
 
 import org.example.tuktuksparedepot.Operations.DealerOp;
+import org.example.tuktuksparedepot.fileWriting.FileWrite;
 
 public class TestRun {
     public static void main(String[] args) {
@@ -17,10 +18,8 @@ public class TestRun {
             System.out.println(read.dealersRead().get(i).toString());
         }*/
 
-        DealerOp read=new DealerOp();
-        for(int i=0;i<read.sortedRandDealers().size();i++){
-            System.out.println(read.sortedRandDealers().get(i).getLocation()+" | "+read.sortedRandDealers().get(i));
-        }
+        FileWrite fw=new FileWrite();
+        fw.auditLogWrite("add","P002");
 
 
     }
