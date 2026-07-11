@@ -1,6 +1,6 @@
 package org.example.tuktuksparedepot;
 
-import org.example.tuktuksparedepot.Operations.InventoryOp;
+import org.example.tuktuksparedepot.Operations.DealerOp;
 
 public class TestRun {
     public static void main(String[] args) {
@@ -17,9 +17,9 @@ public class TestRun {
             System.out.println(read.dealersRead().get(i).toString());
         }*/
 
-        InventoryOp read=new InventoryOp();
-        for(int i=0;i<read.sortedInventory().size();i++){
-            System.out.println(read.sortedInventory().get(i).getCategory()+" | "+read.sortedInventory().get(i).getPartCode());
+        DealerOp read=new DealerOp();
+        for(int i=0;i<read.sortedRandDealers().size();i++){
+            System.out.println(read.sortedRandDealers().get(i).getLocation()+" | "+read.sortedRandDealers().get(i));
         }
 
 

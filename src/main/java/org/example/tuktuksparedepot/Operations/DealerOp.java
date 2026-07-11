@@ -9,7 +9,20 @@ public class DealerOp {
     DealersLoad read=new DealersLoad();
     ArrayList<dealer> dealers=new ArrayList<>(read.dealersRead());
 
+    public ArrayList<dealer> sortedRandDealers(){
+        ArrayList<dealer> sortedDealers =new ArrayList<>(getRandDealers());
 
+        for(int i = 0; i< sortedDealers.size()-1; i++){
+            for(int j = 0; j< sortedDealers.size()-1-i; j++){
+                if(sortedDealers.get(j).getLocation().compareTo(sortedDealers.get(j+1).getLocation())>0){
+                    dealer temp= sortedDealers.get(j);
+                    sortedDealers.set(j, sortedDealers.get(j+1));
+                    sortedDealers.set(j+1,temp);
+                }
+            }
+        }
+        return sortedDealers;
+    }
 
     private ArrayList<dealer> getRandDealers(){
         ArrayList<dealer> randDealers=new ArrayList<>();
