@@ -134,6 +134,65 @@ public class InventoryOp {
         return sortedList;
     }
 
+    public ArrayList<sparePart> searchPart(String keyword,String brand,double minPrice,double maxPrice,String category){
+
+        ArrayList<sparePart> results=new ArrayList<sparePart>();
+
+        for(int i=0;i<parts.size();i++){
+
+            boolean match=false;
+
+            if(keyword!=null){
+                if(parts.get(i).getPartName().contains(keyword)){
+                    match=true;
+                }
+                else{
+                    match=false;
+                }
+            }
+            else{
+                match=true;
+            }
+
+            if(brand!=null){
+                if(parts.get(i).getBrand().equals(brand)){
+                    match=true;
+                }
+                else{
+                    match=false;
+                }
+            }
+            else{
+                match=true;
+            }
+
+            if(parts.get(i).getPrice()>=minPrice && parts.get(i).getPrice()<=maxPrice){
+                match=true;
+            }
+            else{
+                match=false;
+            }
+
+            if(category!=null){
+                if(parts.get(i).getCategory().equals(category)){
+                    match=true;
+                }
+                else{
+                    match=false;
+                }
+            }
+            else{
+                match=true;
+            }
+
+            if(match==true){
+               results.add(parts.get(i));
+            }
+
+        }
+        return results;
+    }
+
 
 
 }
