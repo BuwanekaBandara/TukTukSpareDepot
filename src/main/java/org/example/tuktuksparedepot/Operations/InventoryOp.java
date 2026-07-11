@@ -2,12 +2,14 @@ package org.example.tuktuksparedepot.Operations;
 
 import org.example.tuktuksparedepot.fileHandling.InventoryLoad;
 import org.example.tuktuksparedepot.objects.sparePart;
+import org.example.tuktuksparedepot.fileWriting.FileWrite;
 import java.util.ArrayList;
 
 public class InventoryOp {
 
     InventoryLoad read = new InventoryLoad();
     ArrayList<sparePart> parts = new ArrayList<sparePart>(read.inventoryRead());
+    FileWrite fw=new FileWrite();
 
     public ArrayList<sparePart> getAllParts(){
         return parts;
@@ -21,12 +23,14 @@ public class InventoryOp {
             }
         }
         parts.add(newPart);
+        fw.auditLogWrite("Part Added",newPart.getPartCode());
         System.out.println("Part added successfully");
     }
 
     public void deletePart(String delPart){
         for(int i=0;i<parts.size();i++){
             if(parts.get(i).getPartCode().equals(delPart.trim().toUpperCase())) {
+                fw.auditLogWrite("Part Deleted",parts.get(i).getPartCode());
                 parts.remove(i);
                 System.out.println("Part deleted successfully");
                 return;
@@ -123,7 +127,9 @@ public class InventoryOp {
                     sortedList.set(j+1,temp);
                 }
                 else if(sortedList.get(j).getCategory().compareTo(sortedList.get(j+1).getCategory())==0){
-                    if(sortedList.get(j).getPartCode().substring(1).compareTo(sortedList.get(j+1).getPartCode().substring(1))>0){
+                    int prevCode=Integer.parseInt(sortedList.get(j).getPartCode().substring(1));
+                    int nextCode=Integer.parseInt(sortedList.get(j+1).getPartCode().substring(1));
+                    if(prevCode>nextCode){
                         sparePart temp=sortedList.get(j);
                         sortedList.set(j,sortedList.get(j+1));
                         sortedList.set(j+1,temp);
