@@ -1,4 +1,4 @@
-package org.example.tuktuksparedepot;
+package org.example.tuktuksparedepot.Operations;
 
 import org.example.tuktuksparedepot.fileHandling.InventoryLoad;
 import org.example.tuktuksparedepot.objects.sparePart;
@@ -203,13 +203,11 @@ public class InventoryOp {
     }
 
     public double totalPrice(){
-        double totalPrice=0;
+        double totalInventPrice=0;
         for(int i=0;i<parts.size();i++){
-            totalPrice+=(parts.get(i).getPrice()*parts.get(i).getQuantity());
+            totalInventPrice+=(parts.get(i).getPrice()*parts.get(i).getQuantity());
         }
-        return totalPrice;
+        return totalInventPrice;
     }
-
-
 
 }

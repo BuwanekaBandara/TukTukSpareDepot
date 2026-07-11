@@ -1,6 +1,6 @@
 package org.example.tuktuksparedepot;
 
-import org.example.tuktuksparedepot.fileHandling.DealersLoad;
+import org.example.tuktuksparedepot.Operations.InventoryOp;
 
 public class TestRun {
     public static void main(String[] args) {
