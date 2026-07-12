@@ -47,7 +47,7 @@ public class sparePart {
             System.out.println("Part Name cannot be empty");
         }
         else {
-            this.partName = partName;
+            this.partName = partName.trim();
         }
 
     }
@@ -71,6 +71,7 @@ public class sparePart {
     public void setPrice(double price) {
         if (price <= 0) {
             System.out.println("Invalid Price.");
+            this.price = 0;
         } else {
             this.price = price;
         }

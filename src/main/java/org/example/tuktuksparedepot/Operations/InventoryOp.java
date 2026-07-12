@@ -11,9 +11,10 @@ public class InventoryOp {
     ArrayList<sparePart> parts = new ArrayList<sparePart>(read.inventoryRead());
     FileWrite fw=new FileWrite();
 
-    public ArrayList<sparePart> getAllParts(){
-        return parts;
+    public void saveCheckoutInventory(){
+        fw.saveInventory(parts);
     }
+
 
     public void addPart(sparePart newPart){
         for(int i=0;i<parts.size();i++){
@@ -24,6 +25,7 @@ public class InventoryOp {
         }
         parts.add(newPart);
         fw.auditLogWrite("Part Added",newPart.getPartCode());
+        fw.saveInventory(parts);
         System.out.println("Part added successfully");
     }
 
@@ -33,6 +35,7 @@ public class InventoryOp {
                 fw.auditLogWrite("Part Deleted",parts.get(i).getPartCode());
                 parts.remove(i);
                 System.out.println("Part deleted successfully");
+                fw.saveInventory(parts);
                 return;
             }
         }
@@ -95,6 +98,7 @@ public class InventoryOp {
             part.setImg(part.getImg());
         }
         System.out.println("Part updated successfully");
+        fw.saveInventory(parts);
     }
 
     public sparePart getPartByCode(String matchPart){

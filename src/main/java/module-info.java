@@ -1,6 +1,7 @@
 module org.example.tuktuksparedepot {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.sql;
 
 
     opens org.example.tuktuksparedepot to javafx.fxml;

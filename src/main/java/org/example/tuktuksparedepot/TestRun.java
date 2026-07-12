@@ -1,6 +1,8 @@
 package org.example.tuktuksparedepot;
 
+import org.example.tuktuksparedepot.Operations.CartOp;
 import org.example.tuktuksparedepot.Operations.DealerOp;
+import org.example.tuktuksparedepot.Operations.InventoryOp;
 import org.example.tuktuksparedepot.fileWriting.FileWrite;
 
 public class TestRun {
@@ -17,9 +19,6 @@ public class TestRun {
         for(int i=0;i<read.dealersRead().size();i++){
             System.out.println(read.dealersRead().get(i).toString());
         }*/
-
-        FileWrite fw=new FileWrite();
-        fw.auditLogWrite("add","P002");
 
 
     }

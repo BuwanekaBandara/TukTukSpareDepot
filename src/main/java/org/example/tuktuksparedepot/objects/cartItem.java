@@ -28,7 +28,6 @@ public class cartItem {
     }
     public void setCartQuantity(int quantity){
         if(quantity<=0 || quantity> part.getQuantity()){
-            this.quantity=1;
             System.out.println("Invalid quantity");
             return;
         }
