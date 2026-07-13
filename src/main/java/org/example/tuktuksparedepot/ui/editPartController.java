@@ -1,0 +1,115 @@
+package org.example.tuktuksparedepot.ui;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import org.example.tuktuksparedepot.Operations.InventoryOp;
+import org.example.tuktuksparedepot.objects.sparePart;
+
+public class editPartController {
+
+    @FXML private TextField updatePartCode;
+    @FXML private TextField updatePartName;
+    @FXML private TextField updateBrand;
+    @FXML private TextField updatePrice;
+    @FXML private TextField updateQuantity;
+    @FXML private TextField updateCategory;
+    @FXML private DatePicker updateDate;
+    @FXML private TextField updateImage;
+    @FXML private Button editPartBtn;
+    @FXML private Button resetFieldsBtn;
+
+    InventoryOp inventoryOp;
+    sparePart selectedPart;
+    InventoryController ic=new InventoryController();
+    public void setInventoryOp(InventoryOp inventoryOp){
+        this.inventoryOp=inventoryOp;
+    }
+    public void setPart(sparePart selectedPart){
+        this.selectedPart=selectedPart;
+    }
+
+    public void setText(sparePart selected){
+
+        String price=Double.toString(selected.getPrice());
+        String quantity=Integer.toString(selected.getQuantity());
+
+        updatePartCode.setText(selected.getPartCode());
+        updatePartName.setText(selected.getPartName());
+        updateBrand.setText(selected.getBrand());
+        updatePrice.setText(price);
+        updateQuantity.setText(quantity);
+        updateCategory.setText(selected.getCategory());
+//        updateDate.setValue(selected.getDate());
+        updateImage.setText(selected.getImg());
+
+    }
+
+    public void handleEditPartBtn(){
+
+        String code=updatePartCode.getText();
+        if(code.isEmpty()||!selectedPart.getPartCode().equalsIgnoreCase(code)){
+            ic.showAlert("Error: Part Code Change","Part Code cannot be changed");
+            updatePartCode.setText(selectedPart.getPartCode());
+            return;
+        }
+
+        String name=updatePartName.getText().trim();
+        if(name.isEmpty()){
+            ic.showAlert("Error: Empty Part Name","Part Name cannot be empty");
+            return;
+        }
+
+        String brand=updateBrand.getText().trim();
+
+        double Dprice=0;
+        int Iquantity=0;
+        try {
+            Dprice = Double.parseDouble(updatePrice.getText().trim());
+
+            Iquantity = Integer.parseInt(updateQuantity.getText().trim());
+        }
+        catch (NumberFormatException e){
+            ic.showAlert("Error: Invalid Input","Enter an input of numbers to price and quantity fields");
+            return;
+        }
+        if(Iquantity<0||Dprice<0){
+            ic.showAlert("Error: Invalid Quantity","Quantity or Price cannot be negative. Default 0 will be replaced with the negative value.");
+        }
+
+        String category=updateCategory.getText().trim();
+        if(category.isEmpty()){
+            ic.showAlert("Error: Empty Category","Category cannot be empty");
+            return;
+        }
+
+        String date;
+        try {
+            date = updateDate.getValue().toString();
+        }
+        catch (NullPointerException e){
+            date=null;
+        }
+        String image=updateImage.getText().trim();
+
+
+        inventoryOp.updatePart(code,name,brand,Dprice,Iquantity,category,date,image);
+        ic.showAlert("Success","Successfully Updated Part Details");
+
+        Stage stage=(Stage) editPartBtn.getScene().getWindow();
+        stage.close();
+
+    }
+
+    public void handleResetFieldsBtn(){
+        setText(selectedPart);
+    }
+
+
+
+
+
+
+}

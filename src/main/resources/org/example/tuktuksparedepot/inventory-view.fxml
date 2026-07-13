@@ -36,7 +36,7 @@
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                <children>
                   <Button fx:id="addPartBtn" mnemonicParsing="false" style="-fx-background-color: #0c4420;" text="Add Part" textFill="WHITE" onAction="#handleAddPart" />
-                  <Button fx:id="editPartBtn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: #0c4420;" text="Edit Part" textFill="WHITE" />
+                  <Button fx:id="editPartBtn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: #0c4420;" text="Edit Part" textFill="WHITE" onAction="#handleEditPart" />
                   <Button fx:id="deletePartBtn" layoutX="72.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleDeletePart" style="-fx-background-color: #0c4420;" text="Delete Part" textFill="WHITE" />
                   <Button fx:id="searchBtn" layoutX="135.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: #0c4420;" text="Search" textFill="WHITE" />
                   <Button fx:id="cartBtn" layoutX="197.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: #0c4420;" text="Cart" textFill="WHITE" />

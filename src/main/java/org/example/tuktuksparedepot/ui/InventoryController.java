@@ -117,6 +117,39 @@ public class InventoryController {
     }
 
     @FXML
+    public void handleEditPart(){
+
+        sparePart selectedPart=inventoryTable.getSelectionModel().getSelectedItem();
+
+        if(selectedPart==null){
+            showAlert("Error","Please select a part to be edited.");
+            return;
+        }
+
+        try{
+            FXMLLoader loader=new FXMLLoader(getClass().getResource("/org/example/tuktuksparedepot/editPart-view.fxml"));
+
+            Parent root=loader.load();
+            editPartController controller=loader.getController();
+            controller.setInventoryOp(inventoryOp);
+            controller.setPart(selectedPart);
+            controller.setText(selectedPart);
+
+            Stage stage=new Stage();
+            stage.setTitle("Edit Part");
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+
+            loadInventoryTable();
+            updateTotal();
+            lowStockList();
+        }
+        catch(Exception e){
+            showAlert("Error","Error occured while editing part.");
+        }
+    }
+
+    @FXML
     private void handleDeletePart(){
         sparePart selectedPart=inventoryTable.getSelectionModel().getSelectedItem();
 

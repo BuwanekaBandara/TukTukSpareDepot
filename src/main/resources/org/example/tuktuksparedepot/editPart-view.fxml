@@ -12,10 +12,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #bac5bd;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.tuktuksparedepot.ui.addPartController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #bac5bd;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.tuktuksparedepot.ui.editPartController">
    <top>
-      <Label contentDisplay="CENTER" text="Add a Part" BorderPane.alignment="CENTER_LEFT">
+      <Label contentDisplay="CENTER" text="Edit a Part" BorderPane.alignment="CENTER_LEFT">
          <font>
             <Font name="Calibri Bold" size="14.0" />
          </font>
@@ -42,12 +41,12 @@
         </rowConstraints>
          <children>
             <Label text="Part Code: " />
-            <TextField fx:id="addPartCode" prefHeight="26.0" prefWidth="676.0" promptText="Pxxxx" GridPane.columnIndex="1">
+            <TextField fx:id="updatePartCode" prefHeight="26.0" prefWidth="676.0" promptText="Pxxxx" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets bottom="20.0" left="20.0" right="750.0" top="20.0" />
                </GridPane.margin>
             </TextField>
-            <TextField fx:id="addPartName" layoutX="235.0" layoutY="41.0" prefHeight="26.0" prefWidth="676.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextField fx:id="updatePartName" layoutX="235.0" layoutY="41.0" prefHeight="26.0" prefWidth="676.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets bottom="20.0" left="20.0" right="600.0" top="20.0" />
                </GridPane.margin>
@@ -59,32 +58,32 @@
             <Label layoutX="143.0" layoutY="399.0" text="Category: " GridPane.rowIndex="5" />
             <Label layoutX="140.0" layoutY="488.0" text="Date: " GridPane.rowIndex="6" />
             <Label layoutX="164.0" layoutY="576.0" text="Image: " GridPane.rowIndex="7" />
-            <TextField fx:id="addBrand" layoutX="235.0" layoutY="129.0" prefHeight="26.0" prefWidth="676.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <TextField fx:id="updateBrand" layoutX="235.0" layoutY="129.0" prefHeight="26.0" prefWidth="676.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets bottom="20.0" left="20.0" right="600.0" top="20.0" />
                </GridPane.margin>
             </TextField>
-            <TextField fx:id="addPrice" layoutX="215.0" layoutY="218.0" prefHeight="26.0" prefWidth="676.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <TextField fx:id="updatePrice" layoutX="215.0" layoutY="218.0" prefHeight="26.0" prefWidth="676.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets bottom="20.0" left="20.0" right="600.0" top="20.0" />
                </GridPane.margin>
             </TextField>
-            <TextField fx:id="addQuantity" layoutX="215.0" layoutY="306.0" prefHeight="26.0" prefWidth="676.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <TextField fx:id="updateQuantity" layoutX="215.0" layoutY="306.0" prefHeight="26.0" prefWidth="676.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets bottom="20.0" left="20.0" right="600.0" top="20.0" />
                </GridPane.margin>
             </TextField>
-            <TextField fx:id="addCategory" layoutX="215.0" layoutY="395.0" prefHeight="26.0" prefWidth="676.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <TextField fx:id="updateCategory" layoutX="215.0" layoutY="395.0" prefHeight="26.0" prefWidth="676.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <GridPane.margin>
                   <Insets bottom="20.0" left="20.0" right="600.0" top="20.0" />
                </GridPane.margin>
             </TextField>
-            <DatePicker fx:id="addDate" GridPane.columnIndex="1" GridPane.rowIndex="6">
+            <DatePicker fx:id="updateDate" GridPane.columnIndex="1" GridPane.rowIndex="6">
                <GridPane.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </GridPane.margin>
             </DatePicker>
-            <TextField fx:id="addImage" layoutX="215.0" layoutY="483.0" prefHeight="26.0" prefWidth="676.0" promptText="Enter the file name of the image" GridPane.columnIndex="1" GridPane.rowIndex="7">
+            <TextField fx:id="updateImage" layoutX="215.0" layoutY="483.0" prefHeight="26.0" prefWidth="676.0" promptText="Enter the file name of the image" GridPane.columnIndex="1" GridPane.rowIndex="7">
                <GridPane.margin>
                   <Insets bottom="20.0" left="20.0" right="600.0" top="20.0" />
                </GridPane.margin>
@@ -98,12 +97,12 @@
    <bottom>
       <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <buttons>
-          <Button fx:id="clearFieldsBtn" mnemonicParsing="false" style="-fx-background-color: red;" text="Clear Fields" textFill="WHITE" onAction="#handleClearFields">
+          <Button fx:id="resetFieldsBtn" mnemonicParsing="false" onAction="#handleResetFieldsBtn" style="-fx-background-color: red;" text="Reset Fields" textFill="WHITE">
                <font>
                   <Font size="13.0" />
                </font>
             </Button>
-            <Button fx:id="addPartBtn" mnemonicParsing="false" style="-fx-background-color: #0c4420;" text="Add Part" textFill="WHITE" onAction="#handleAddPartBtn">
+            <Button fx:id="editPartBtn" mnemonicParsing="false" onAction="#handleEditPartBtn" style="-fx-background-color: #0c4420;" text="Edit Part" textFill="WHITE">
                <font>
                   <Font size="13.0" />
                </font>

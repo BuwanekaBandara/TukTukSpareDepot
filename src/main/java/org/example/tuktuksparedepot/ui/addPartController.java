@@ -43,7 +43,7 @@ public class addPartController {
     }
 
     @FXML
-    private void handleAddPart(){
+    private void handleAddPartBtn(){
         String code=addPartCode.getText();
         if (code.trim().isEmpty()){
             ic.showAlert("Error: Empty Part Code","Part Code cannot be empty");
