@@ -1,3 +1,20 @@
 12/07/2026 12:13:53 | Item Sold | P001 | 3
 12/07/2026 12:15:36 | Item Sold | P001 | 3
 12/07/2026 12:15:36 | Item Sold | P003 | 5
+13/07/2026 11:37:20 | Part Deleted | P008
+13/07/2026 11:37:50 | Part Deleted | P008
+13/07/2026 11:39:53 | Part Deleted | P008
+13/07/2026 11:42:03 | Part Deleted | P008
+13/07/2026 11:43:15 | Part Deleted | P008
+13/07/2026 11:43:42 | Part Deleted | P005
+13/07/2026 11:52:35 | Part Deleted | P008
+13/07/2026 12:09:58 | Part Deleted | P004
+13/07/2026 19:52:45 | Part Added | P011
+13/07/2026 20:12:54 | Part Added | P011
+13/07/2026 20:15:08 | Part Added | P011
+13/07/2026 20:16:31 | Part Added | P011
+13/07/2026 20:17:16 | Part Added | P012
+13/07/2026 20:17:59 | Part Added | P013
+13/07/2026 20:18:33 | Part Deleted | P012
+13/07/2026 20:18:42 | Part Deleted | P011
+13/07/2026 20:18:47 | Part Deleted | P013

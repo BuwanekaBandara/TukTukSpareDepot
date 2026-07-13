@@ -2,10 +2,14 @@ package org.example.tuktuksparedepot.ui;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import org.example.tuktuksparedepot.objects.sparePart;
 import org.example.tuktuksparedepot.Operations.InventoryOp;
 import java.util.ArrayList;
@@ -88,5 +92,52 @@ public class InventoryController {
             }
             lowStockLabel.setText("Low Stocks:"+codes);
         }
+    }
+    @FXML
+    public void handleAddPart(){
+        try{
+            FXMLLoader loader=new FXMLLoader(getClass().getResource("/org/example/tuktuksparedepot/addPart-view.fxml"));
+
+            Parent root=loader.load();
+            addPartController controller=loader.getController();
+            controller.setInventoryOp(inventoryOp);
+
+            Stage stage=new Stage();
+            stage.setTitle("Add new Part");
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+
+            loadInventoryTable();
+            updateTotal();
+            lowStockList();
+        }
+        catch(Exception e){
+            showAlert("Error","Error occured while adding part.");
+        }
+    }
+
+    @FXML
+    private void handleDeletePart(){
+        sparePart selectedPart=inventoryTable.getSelectionModel().getSelectedItem();
+
+        if(selectedPart==null){
+            showAlert("Error: No part selected","Please select a part to delete from the table");
+        }
+        else{
+            inventoryOp.deletePart(selectedPart.getPartCode());
+            initialize();
+            showAlert("Success","Part deleted successfully");
+        }
+    }
+    public void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+    @FXML
+    private void handleClearSelection(){
+        inventoryTable.getSelectionModel().clearSelection();
     }
 }

@@ -69,7 +69,7 @@ public class sparePart {
     }
 
     public void setPrice(double price) {
-        if (price <= 0) {
+        if (price < 0) {
             System.out.println("Invalid Price.");
             this.price = 0;
         } else {
@@ -86,6 +86,7 @@ public class sparePart {
             this.quantity = quantity;
         } else {
             System.out.println("Invalid Quantity");
+            this.quantity = 0;
         }
     }
 
