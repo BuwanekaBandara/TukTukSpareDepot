@@ -12,4 +12,6 @@ module org.example.tuktuksparedepot {
     opens org.example.tuktuksparedepot.fileHandling to javafx.fxml;
     exports org.example.tuktuksparedepot.Operations;
     opens org.example.tuktuksparedepot.Operations to javafx.fxml;
+    exports org.example.tuktuksparedepot.ui;
+    opens org.example.tuktuksparedepot.ui to javafx.fxml;
 }

@@ -1,4 +1,4 @@
-package org.example.tuktuksparedepot;
+package org.example.tuktuksparedepot.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
