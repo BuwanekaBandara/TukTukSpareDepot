@@ -166,6 +166,25 @@ public class InventoryController {
     }
 
     @FXML
+    private void handleSearch() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/tuktuksparedepot/search-view.fxml"));
+            Parent root = loader.load();
+
+            searchController controller = loader.getController();
+            controller.setinventoryOp(inventoryOp);
+
+            Stage stage = new Stage();
+            stage.setTitle("Search Parts");
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (Exception e) {
+            showAlert("Error","Error occured while searching part.");
+        }
+    }
+
+    @FXML
     private void handleDealers(){
         DealerOp dealerOp=new DealerOp();
         try{

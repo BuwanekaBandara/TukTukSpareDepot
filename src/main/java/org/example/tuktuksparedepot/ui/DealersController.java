@@ -39,14 +39,14 @@ public class DealersController {
 
 
     @FXML
-    public void handleRandDealers() {
+    private void handleRandDealers() {
         ArrayList<dealer> selected = dealerOp.sortedRandDealers();
         ObservableList<dealer> data = FXCollections.observableArrayList(selected);
         dealerTable.setItems(data);
     }
 
     @FXML
-    public void handleCloseWindow(){
+    private void handleCloseWindow(){
         Stage stage=(Stage) closeDealers.getScene().getWindow();
         stage.close();
     }

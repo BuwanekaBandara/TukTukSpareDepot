@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="700.0" prefWidth="1000.0"
+            style="-fx-background-color: #bac5bd;"
+            xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.example.tuktuksparedepot.ui.searchController">
+    <top>
+        <VBox spacing="10.0">
+            <padding>
+                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+            </padding>
+            <children>
+                <Label text="Search Inventory">
+                    <font>
+                        <Font name="Cambria Bold" size="22.0"/>
+                    </font>
+                </Label>
+                <GridPane hgap="15.0" vgap="10.0">
+                    <columnConstraints>
+                        <ColumnConstraints prefWidth="120" halignment="RIGHT"/>
+                        <ColumnConstraints prefWidth="250"/>
+                        <ColumnConstraints prefWidth="120" halignment="RIGHT"/>
+                        <ColumnConstraints prefWidth="250"/>
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints prefHeight="40"/>
+                        <RowConstraints prefHeight="40"/>
+                    </rowConstraints>
+                    <children>
+                        <Label text="Keyword:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                        <TextField fx:id="keywordField" promptText="Search by part name" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                        <Label text="Brand:" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                        <TextField fx:id="brandField" promptText="e.g. Bajaj" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+
+                        <Label text="Category:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                        <TextField fx:id="categoryField" promptText="e.g. Engine" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                        <Label text="Price Range:" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+                        <HBox spacing="5.0" GridPane.rowIndex="1" GridPane.columnIndex="3">
+                            <children>
+                                <TextField fx:id="minPriceField" promptText="Min" prefWidth="100"/>
+                                <Label text=" to "/>
+                                <TextField fx:id="maxPriceField" promptText="Max" prefWidth="100"/>
+                            </children>
+                        </HBox>
+                    </children>
+                </GridPane>
+
+
+                <HBox spacing="10.0">
+                    <children>
+                        <Button fx:id="searchBtn" text="Search" onAction="#handleSearch" style="-fx-background-color: #0c4420;" textFill="WHITE" mnemonicParsing="false"/>
+                        <Button fx:id="clearBtn" text="Clear" onAction="#handleClear" style="-fx-background-color: red;" textFill="WHITE" mnemonicParsing="false"/>
+                        <Label fx:id="resultCountLabel" text="Results: 0" style="-fx-font-size: 14px;"/>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </top>
+    <center>
+        <TableView fx:id="searchTable">
+            <columns>
+                <TableColumn fx:id="partCodeCol" text="Part Code" prefWidth="80"/>
+                <TableColumn fx:id="partNameCol" text="Part Name" prefWidth="200"/>
+                <TableColumn fx:id="brandCol" text="Brand" prefWidth="100"/>
+                <TableColumn fx:id="priceCol" text="Price" prefWidth="80"/>
+                <TableColumn fx:id="quantityCol" text="Quantity" prefWidth="70"/>
+                <TableColumn fx:id="categoryCol" text="Category" prefWidth="100"/>
+                <TableColumn fx:id="dateCol" text="Date" prefWidth="100"/>
+            </columns>
+            <BorderPane.margin>
+                <Insets bottom="20.0" left="15.0" right="15.0" top="10.0"/>
+            </BorderPane.margin>
+        </TableView>
+    </center>
+</BorderPane>

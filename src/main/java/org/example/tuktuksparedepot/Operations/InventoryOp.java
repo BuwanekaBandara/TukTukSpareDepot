@@ -150,50 +150,30 @@ public class InventoryOp {
 
         for(int i=0;i<parts.size();i++){
 
-            boolean match=false;
+            boolean match=true;
 
             if(keyword!=null){
-                if(parts.get(i).getPartName().contains(keyword)){
-                    match=true;
-                }
-                else{
+                if(!parts.get(i).getPartName().toLowerCase().contains(keyword.toLowerCase())){
                     match=false;
                 }
-            }
-            else{
-                match=true;
             }
 
             if(brand!=null){
-                if(parts.get(i).getBrand().equals(brand)){
-                    match=true;
-                }
-                else{
+                if(!parts.get(i).getBrand().equalsIgnoreCase(brand)){
                     match=false;
                 }
             }
-            else{
-                match=true;
-            }
 
-            if(parts.get(i).getPrice()>=minPrice && parts.get(i).getPrice()<=maxPrice){
-                match=true;
-            }
-            else{
+            if(parts.get(i).getPrice()<minPrice || parts.get(i).getPrice()>maxPrice){
                 match=false;
             }
 
             if(category!=null){
-                if(parts.get(i).getCategory().equals(category)){
-                    match=true;
-                }
-                else{
+                if(!parts.get(i).getCategory().equalsIgnoreCase(category)){
                     match=false;
                 }
             }
-            else{
-                match=true;
-            }
+
 
             if(match==true){
                results.add(parts.get(i));
