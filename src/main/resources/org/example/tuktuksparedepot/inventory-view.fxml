@@ -40,7 +40,7 @@
                   <Button fx:id="deletePartBtn" layoutX="72.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleDeletePart" style="-fx-background-color: #0c4420;" text="Delete Part" textFill="WHITE" />
                   <Button fx:id="searchBtn" layoutX="135.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: #0c4420;" text="Search" textFill="WHITE" />
                   <Button fx:id="cartBtn" layoutX="197.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: #0c4420;" text="Cart" textFill="WHITE" />
-                  <Button fx:id="dealersBtn" layoutX="260.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: #0c4420;" text="Dealers" textFill="WHITE" />
+                  <Button fx:id="dealersBtn" layoutX="260.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: #0c4420;" text="Dealers" textFill="WHITE" onAction="#handleDealers" />
                </children>
                <padding>
                   <Insets bottom="10.0" />

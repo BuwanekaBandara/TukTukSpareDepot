@@ -10,6 +10,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import org.example.tuktuksparedepot.Operations.DealerOp;
+import org.example.tuktuksparedepot.objects.dealer;
 import org.example.tuktuksparedepot.objects.sparePart;
 import org.example.tuktuksparedepot.Operations.InventoryOp;
 import java.util.ArrayList;
@@ -160,6 +162,23 @@ public class InventoryController {
             inventoryOp.deletePart(selectedPart.getPartCode());
             initialize();
             showAlert("Success","Part deleted successfully");
+        }
+    }
+
+    @FXML
+    private void handleDealers(){
+        DealerOp dealerOp=new DealerOp();
+        try{
+            FXMLLoader loader=new FXMLLoader(getClass().getResource("/org/example/tuktuksparedepot/dealers-view.fxml"));
+            Parent root=loader.load();
+
+            Stage stage=new Stage();
+            stage.setTitle("Random Dealers Selection");
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+        }
+        catch(Exception e){
+            showAlert("Error","Error occured while displaying dealers.");
         }
     }
     public void showAlert(String title, String message) {
