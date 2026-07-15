@@ -21,7 +21,7 @@
                   <Font size="13.0" />
                </font>
             </Button>
-            <Button fx:id="closeDealers" mnemonicParsing="false" style="-fx-background-color: #ff0000;" text="Close Window" textFill="WHITE" onAction="#handleCloseWindow"/>
+            <Button fx:id="closeDealers" mnemonicParsing="false" onAction="#handleCloseWindow" style="-fx-background-color: #ff0000;" text="Close Window" textFill="WHITE" />
         </buttons>
          <BorderPane.margin>
             <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
@@ -29,9 +29,9 @@
       </ButtonBar>
    </bottom>
    <top>
-      <Label style="-fx-background-color: #bac5bd;" text="Dealers of Malabe Tuk-Tuk &amp; Three-Wheeler Spares Depot" textFill="#fffdfd" BorderPane.alignment="TOP_LEFT">
+      <Label style="-fx-background-color: #bac5bd;" text="Dealers of Malabe Tuk-Tuk &amp; Three-Wheeler Spares Depot" BorderPane.alignment="TOP_LEFT">
          <font>
-            <Font name="Calibri Bold" size="24.0" />
+            <Font name="Cambria Bold" size="24.0" />
          </font>
          <BorderPane.margin>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

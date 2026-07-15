@@ -185,6 +185,30 @@ public class InventoryController {
     }
 
     @FXML
+    private void handleCart(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/tuktuksparedepot/cart-view.fxml"));
+            Parent root = loader.load();
+
+            CartController controller=loader.getController();
+            controller.setInventoryOp(inventoryOp);
+
+            Stage stage=new Stage();
+            stage.setTitle("Cart");
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+
+            loadInventoryTable();
+            updateTotal();
+            lowStockList();
+        }
+        catch (Exception e){
+            showAlert("Error","Error occured while proceeding with cart.");
+        }
+
+    }
+
+    @FXML
     private void handleDealers(){
         DealerOp dealerOp=new DealerOp();
         try{
