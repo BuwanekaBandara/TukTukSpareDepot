@@ -7,12 +7,21 @@ import org.example.tuktuksparedepot.Operations.InventoryOp;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class CartOp {
 
     ArrayList<cartItem> items=new ArrayList<cartItem>();
     FileWrite fw=new FileWrite();
-    InventoryOp inventoryOp=new InventoryOp();
+    InventoryOp inventoryOp;
+
+    public void setInventoryOp(InventoryOp inventoryOp) {
+        this.inventoryOp = inventoryOp;
+    }
+
+    public ArrayList<cartItem> getItems(){
+        return items;
+    }
 
     public void addToCart(sparePart part,int quantity){
 
@@ -50,18 +59,23 @@ public class CartOp {
         System.out.println("Item not found");
     }
 
-    public double cartTotal() {
+    public ArrayList<Double> cartTotal() {
 
         double cartTotal=0;
+        double totalBulkDis=0;
+        double totalSynergyDis=0;
+
+        ArrayList<Double> TotList=new ArrayList<>();
 
         if (items.size() == 0) {
-            return 0;
+            return null;
         }
 
         double sumSubTotal=0;
         for (int i = 0; i < items.size(); i++) {
             double itemSubTotal=items.get(i).getSubTotal();
             if (items.get(i).getCartQuantity() >= 3) {
+                totalBulkDis+=(itemSubTotal*0.05);
                 itemSubTotal*=0.95;
                 sumSubTotal+=itemSubTotal;
             }
@@ -83,9 +97,16 @@ public class CartOp {
         }
         if(Engine && Electrical){
             cartTotal=sumSubTotal*0.90;
-            return cartTotal;
+            totalSynergyDis=sumSubTotal*0.10;
+            TotList.add(cartTotal);
+            TotList.add(totalSynergyDis);
         }
-        return sumSubTotal;
+        else{
+            TotList.add(sumSubTotal);
+            TotList.add(totalSynergyDis);
+        }
+        TotList.add(totalBulkDis);
+        return TotList;
     }
 
     public void checkout(){

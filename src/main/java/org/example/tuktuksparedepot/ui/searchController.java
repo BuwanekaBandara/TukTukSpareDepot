@@ -29,7 +29,6 @@ public class searchController {
     @FXML private TableColumn<sparePart, String> dateCol;
 
     InventoryOp inventoryOp;
-    InventoryController ic=new InventoryController();
 
     public void setinventoryOp(InventoryOp inventoryOp) {
         this.inventoryOp = inventoryOp;
@@ -72,7 +71,7 @@ public class searchController {
             try {
                 minPrice = Double.parseDouble(minPriceField.getText().trim());
             } catch (NumberFormatException e) {
-                ic.showAlert("Invalid Input","Min price must be a number.");
+                showAlert("Invalid Input","Min price must be a number.");
                 return;
             }
         }
@@ -81,7 +80,7 @@ public class searchController {
             try {
                 maxPrice = Double.parseDouble(maxPriceField.getText().trim());
             } catch (NumberFormatException e) {
-                ic.showAlert("Invalid Input","Max price must be a number.");
+                showAlert("Invalid Input","Max price must be a number.");
                 return;
             }
         }
@@ -102,5 +101,13 @@ public class searchController {
         maxPriceField.clear();
         searchTable.setItems(null);
         resultCountLabel.setText("Results: 0");
+    }
+
+    public void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
