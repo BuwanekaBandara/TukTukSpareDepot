@@ -63,6 +63,35 @@ public class InventoryLoad {
         return parts;
     }
 
+    public ArrayList<sparePart> cleanInventoryRead(){
+        ArrayList<sparePart> parts=new ArrayList<>();
+        String filePath="src\\main\\java\\org\\example\\tuktuksparedepot\\legacyfiles\\SavedInventory.txt";
+
+        try(BufferedReader reader=new BufferedReader(new FileReader(filePath))){
+            String line;
+            while((line=reader.readLine())!=null){
+                String [] attributes=line.split("[|]");
+                String partCode=attributes[0];
+                String partName=attributes[1];
+                String brand=attributes[2];
+                double price=Double.parseDouble(attributes[3]);
+                int quantity=Integer.parseInt(attributes[4]);
+                String category=attributes[5];
+                String date=attributes[6];
+                String img=attributes[7];
+
+                sparePart part=new sparePart(partCode,partName,brand,price,quantity,category,date,img);
+                parts.add(part);
+            }
+        }
+        catch(IOException e){
+            System.out.println("Error reading file.Resorting to legacy file");
+            parts=inventoryRead();
+
+        }
+        return parts;
+    }
+
     private String detectDel(String line){
         int comma=0;
         int pipe=0;

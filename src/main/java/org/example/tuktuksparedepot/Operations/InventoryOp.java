@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class InventoryOp {
 
     InventoryLoad read = new InventoryLoad();
-    ArrayList<sparePart> parts = new ArrayList<sparePart>(read.inventoryRead());
+    ArrayList<sparePart> parts = new ArrayList<sparePart>(read.cleanInventoryRead());
     FileWrite fw=new FileWrite();
 
     public void saveCheckoutInventory(){

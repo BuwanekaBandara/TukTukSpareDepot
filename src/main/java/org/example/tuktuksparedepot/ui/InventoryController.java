@@ -74,6 +74,7 @@ public class InventoryController {
         ArrayList<sparePart> sorted=inventoryOp.sortedInventory();
         ObservableList<sparePart> sortedItems=FXCollections.observableArrayList(sorted);
         inventoryTable.setItems(sortedItems);
+        inventoryTable.refresh();
     }
 
     private void updateTotal(){
