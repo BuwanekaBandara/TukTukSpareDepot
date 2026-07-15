@@ -15,6 +15,10 @@ public class InventoryOp {
         fw.saveInventory(parts);
     }
 
+    public ArrayList<sparePart> getAllParts(){
+        return parts;
+    }
+
 
     public void addPart(sparePart newPart){
         for(int i=0;i<parts.size();i++){
