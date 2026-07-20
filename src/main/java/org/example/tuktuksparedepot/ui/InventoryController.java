@@ -29,6 +29,7 @@ public class InventoryController {
     @FXML private TableColumn<sparePart, Integer> quantityCol;
     @FXML private TableColumn<sparePart, String> categoryCol;
     @FXML private TableColumn<sparePart, String> dateCol;
+    @FXML private TableColumn<sparePart, Integer> LowStockThreshCol;
     @FXML private TableColumn<sparePart, String>availabilityCol;
     @FXML private Button addPartBtn;
     @FXML private Button editPartBtn;
@@ -54,6 +55,7 @@ public class InventoryController {
         quantityCol.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         categoryCol.setCellValueFactory(new PropertyValueFactory<>("category"));
         dateCol.setCellValueFactory(new PropertyValueFactory<>("date"));
+        LowStockThreshCol.setCellValueFactory(new PropertyValueFactory<>("lowStockThreshold"));
         availabilityCol.setCellValueFactory(cellData ->{
             sparePart part=cellData.getValue();
             String availability;

@@ -12,6 +12,8 @@ import java.util.Locale;
 
 public class InventoryLoad {
 
+    int defLowStockThreshold=5;
+
     public ArrayList<sparePart> inventoryRead(){
         ArrayList<sparePart> parts=new ArrayList<sparePart>();
         String textFile="src\\main\\java\\org\\example\\tuktuksparedepot\\legacyfiles\\inventory_legacy.txt";
@@ -34,7 +36,7 @@ public class InventoryLoad {
                     String img=addAttribute(corAttributes,7);
 
 
-                    sparePart part=new sparePart(partCode,partName,brand,price,quantity,category,date,img);
+                    sparePart part=new sparePart(partCode,partName,brand,price,quantity,category,date,img,defLowStockThreshold);
                     parts.add(part);
 
                 }
@@ -49,7 +51,7 @@ public class InventoryLoad {
                     String img=addAttribute(attributes,7);
 
 
-                    sparePart part=new sparePart(partCode,partName,brand,price,quantity,category,date,img);
+                    sparePart part=new sparePart(partCode,partName,brand,price,quantity,category,date,img,defLowStockThreshold);
                     parts.add(part);
                 }
 
@@ -82,8 +84,9 @@ public class InventoryLoad {
                 String category=attributes[5];
                 String date=attributes[6];
                 String img=attributes[7];
+                int lowStockThreshold=Integer.parseInt(attributes[8]);
 
-                sparePart part=new sparePart(partCode,partName,brand,price,quantity,category,date,img);
+                sparePart part=new sparePart(partCode,partName,brand,price,quantity,category,date,img,lowStockThreshold);
                 parts.add(part);
             }
         }

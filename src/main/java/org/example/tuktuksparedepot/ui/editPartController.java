@@ -22,6 +22,7 @@ public class editPartController {
     @FXML private TextField updateCategory;
     @FXML private DatePicker updateDate;
     @FXML private TextField updateImage;
+    @FXML private TextField updateLowStockThresh;
     @FXML private Button editPartBtn;
     @FXML private Button resetFieldsBtn;
 
@@ -39,6 +40,7 @@ public class editPartController {
 
         String price=Double.toString(selected.getPrice());
         String quantity=Integer.toString(selected.getQuantity());
+        String lowStockThresh=Integer.toString(selected.getLowStockThreshold());
 
         updatePartCode.setText(selected.getPartCode());
         updatePartName.setText(selected.getPartName());
@@ -48,6 +50,7 @@ public class editPartController {
         updateCategory.setText(selected.getCategory());
         updateDate.setValue(parseToLocalDate(selected.getDate()));
         updateImage.setText(selected.getImg());
+        updateLowStockThresh.setText(lowStockThresh);
 
     }
 
@@ -104,8 +107,20 @@ public class editPartController {
         }
         String image=updateImage.getText().trim();
 
+        int lowStockThreshold;
+        try{
+            lowStockThreshold=Integer.parseInt(updateLowStockThresh.getText().trim());
+            if(lowStockThreshold<1){
+                showAlert("Threshold too low","Threshold is too low.Default Threshold will be applied");
+            }
+        }
+        catch(NumberFormatException e){
+            showAlert("Error: Invalid Input","Enter an input of numbers");
+            return;
+        }
 
-        inventoryOp.updatePart(code,name,brand,Dprice,Iquantity,category,date,image);
+
+        inventoryOp.updatePart(code,name,brand,Dprice,Iquantity,category,date,image,lowStockThreshold);
         showAlert("Success","Successfully Updated Part Details");
 
         Stage stage=(Stage) editPartBtn.getScene().getWindow();

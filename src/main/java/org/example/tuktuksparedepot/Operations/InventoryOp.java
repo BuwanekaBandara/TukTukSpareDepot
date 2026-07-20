@@ -46,7 +46,7 @@ public class InventoryOp {
         System.out.println("The part code does not exist");
     }
 
-    public void updatePart(String partCode, String newPartName, String newPartBrand, double newPartPrice, int newPartQuantity, String newPartCategory,String newPartDate, String newPartImg){
+    public void updatePart(String partCode, String newPartName, String newPartBrand, double newPartPrice, int newPartQuantity, String newPartCategory,String newPartDate, String newPartImg,int newPartLowStockThreshold){
         sparePart part=getPartByCode(partCode);
         if (part==null){
             System.out.println("The part code does not exist");
@@ -101,6 +101,13 @@ public class InventoryOp {
         else{
             part.setImg(part.getImg());
         }
+
+        if (newPartLowStockThreshold>=1){
+            part.setLowStockThreshold(newPartLowStockThreshold);
+        }
+        else{
+            part.setLowStockThreshold(part.getLowStockThreshold());
+        }
         System.out.println("Part updated successfully");
         fw.saveInventory(parts);
     }
@@ -118,7 +125,7 @@ public class InventoryOp {
     public ArrayList<sparePart> getLowStockParts(){
         ArrayList<sparePart> lowStock= new ArrayList<sparePart>();
         for(int i=0;i<parts.size();i++){
-            if(parts.get(i).getQuantity()<=3){
+            if(parts.get(i).getQuantity()<=parts.get(i).getLowStockThreshold()){
                 lowStock.add(parts.get(i));
             }
         }

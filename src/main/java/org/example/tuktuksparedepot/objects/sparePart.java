@@ -9,8 +9,9 @@ public class sparePart {
     private String category;
     private String date;
     private String img;
+    private int lowStockThreshold;
 
-    public sparePart(String partCode, String partName, String brand, double price, int quantity, String category, String date, String img) {
+    public sparePart(String partCode, String partName, String brand, double price, int quantity, String category, String date, String img, int lowStockThreshold) {
         setPartCode(partCode);
         setPartName(partName);
         setBrand(brand);
@@ -19,6 +20,7 @@ public class sparePart {
         setCategory(category);
         setDate(date);
         setImg(img);
+        setLowStockThreshold(lowStockThreshold);
     }
 
 
@@ -127,8 +129,21 @@ public class sparePart {
         }
     }
 
+    public int getLowStockThreshold(){
+        return this.lowStockThreshold;
+    }
+    public void setLowStockThreshold(int lowStockThreshold){
+        if (lowStockThreshold<1){
+            System.out.println("Low Stock Threshold cannot be less than 1");
+            this.lowStockThreshold = 5;
+        }
+        else {
+            this.lowStockThreshold = lowStockThreshold;
+        }
+    }
+
     @Override
     public String toString() {
-        return partCode+"|"+partName+"|"+brand+"|"+price+"|"+quantity+"|"+category+"|"+date+"|"+img;
+        return partCode+"|"+partName+"|"+brand+"|"+price+"|"+quantity+"|"+category+"|"+date+"|"+img+"|"+lowStockThreshold;
     }
 }

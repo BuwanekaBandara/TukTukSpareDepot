@@ -20,6 +20,7 @@ public class addPartController {
     @FXML private TextField addCategory;
     @FXML private DatePicker addDate;
     @FXML private TextField addImage;
+    @FXML private TextField addLowStockThresh;
     @FXML private Button addPartBtn;
     @FXML private Button clearFieldsBtn;
 
@@ -40,6 +41,7 @@ public class addPartController {
         addCategory.clear();
         addDate.setValue(null);
         addImage.clear();
+        addLowStockThresh.setText("5");
     }
 
     @FXML
@@ -98,7 +100,20 @@ public class addPartController {
         }
         String image=addImage.getText().trim();
 
-        sparePart newPart=new sparePart(code,name,brand,price,quantity,category,date,image);
+        int lowStockThreshold;
+        try{
+            lowStockThreshold=Integer.parseInt(addLowStockThresh.getText().trim());
+            if(lowStockThreshold<1){
+                showAlert("Threshold too low","Threshold is too low.Default Threshold will be applied");
+            }
+        }
+        catch(NumberFormatException e){
+            showAlert("Error: Invalid Input","Enter an input of numbers");
+            return;
+        }
+
+
+        sparePart newPart=new sparePart(code,name,brand,price,quantity,category,date,image,lowStockThreshold);
 
         inventoryOp.addPart(newPart);
         showAlert("Success","Successfully Added Part");

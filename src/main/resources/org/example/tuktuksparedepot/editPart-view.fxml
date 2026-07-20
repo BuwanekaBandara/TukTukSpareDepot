@@ -38,6 +38,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Label text="Part Code: " />
@@ -88,6 +89,12 @@
                   <Insets bottom="20.0" left="20.0" right="600.0" top="20.0" />
                </GridPane.margin>
             </TextField>
+            <TextField fx:id="updateLowStockThresh" layoutX="235.0" layoutY="517.0" prefHeight="26.0" prefWidth="676.0" promptText="Enter the file name of the image" GridPane.columnIndex="1" GridPane.rowIndex="8">
+               <GridPane.margin>
+                  <Insets bottom="20.0" left="20.0" right="600.0" top="20.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label layoutX="156.0" layoutY="522.0" text="Low Stock Threshold: " GridPane.rowIndex="8" />
          </children>
          <BorderPane.margin>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
