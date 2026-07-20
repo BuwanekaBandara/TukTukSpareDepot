@@ -5,7 +5,10 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class InventoryLoad {
 
@@ -27,7 +30,7 @@ public class InventoryLoad {
                     double price =parsePrice(addAttribute(corAttributes,3));
                     int quantity=parseQuantity(addAttribute(corAttributes,4));
                     String category=addAttribute(corAttributes,5).toLowerCase();
-                    String date=addAttribute(corAttributes,6).toLowerCase();
+                    String date=ParseDate(addAttribute(corAttributes,6));
                     String img=addAttribute(corAttributes,7);
 
 
@@ -42,7 +45,7 @@ public class InventoryLoad {
                     double price =parsePrice(addAttribute(attributes,3));
                     int quantity=parseQuantity(addAttribute(attributes,4));
                     String category=addAttribute(attributes,5).toLowerCase();
-                    String date=addAttribute(attributes,6).toLowerCase();
+                    String date=ParseDate(addAttribute(attributes,6));
                     String img=addAttribute(attributes,7);
 
 
@@ -147,6 +150,35 @@ public class InventoryLoad {
         else{
             return Integer.parseInt(quantity);
         }
+    }
+
+    private String ParseDate(String date){
+        if(date==null||date.trim().isEmpty()){
+            return null;
+        }
+        String[] formats = {
+                "yyyy-MM-dd",
+                "dd/MM/yyyy",
+                "MM/dd/yyyy",
+                "yyyy/MM/dd",
+                "dd-MM-yyyy",
+                "MM-dd-yyyy",
+                "dd-MMM-yyyy",
+                "MMM dd, yyyy",
+                "Oct 15, yyyy"
+        };
+
+        for(int i=0;i<formats.length;i++){
+            try{
+                DateTimeFormatter formatter=DateTimeFormatter.ofPattern(formats[i], Locale.ENGLISH);
+                LocalDate localDate=LocalDate.parse(date.trim(),formatter);
+                return localDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            }
+            catch(Exception e){
+                System.out.println("Invalid date format detected");
+            }
+        }
+        return null;
     }
 
 

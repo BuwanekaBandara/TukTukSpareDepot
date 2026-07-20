@@ -9,6 +9,9 @@ import javafx.stage.Stage;
 import org.example.tuktuksparedepot.Operations.InventoryOp;
 import org.example.tuktuksparedepot.objects.sparePart;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class editPartController {
 
     @FXML private TextField updatePartCode;
@@ -43,9 +46,15 @@ public class editPartController {
         updatePrice.setText(price);
         updateQuantity.setText(quantity);
         updateCategory.setText(selected.getCategory());
-//        updateDate.setValue(selected.getDate());
+        updateDate.setValue(parseToLocalDate(selected.getDate()));
         updateImage.setText(selected.getImg());
 
+    }
+
+    private LocalDate parseToLocalDate(String date){
+        DateTimeFormatter formatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate localDate=LocalDate.parse(date.trim(),formatter);
+        return localDate;
     }
 
     public void handleEditPartBtn(){
