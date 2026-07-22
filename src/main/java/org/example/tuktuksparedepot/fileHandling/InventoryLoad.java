@@ -167,13 +167,12 @@ public class InventoryLoad {
                 "dd-MM-yyyy",
                 "MM-dd-yyyy",
                 "dd-MMM-yyyy",
-                "MMM dd, yyyy",
-                "Oct 15, yyyy"
+                "MMM dd, yyyy"
         };
 
         for(int i=0;i<formats.length;i++){
             try{
-                DateTimeFormatter formatter=DateTimeFormatter.ofPattern(formats[i], Locale.ENGLISH);
+                DateTimeFormatter formatter=DateTimeFormatter.ofPattern(formats[i]);
                 LocalDate localDate=LocalDate.parse(date.trim(),formatter);
                 return localDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
             }

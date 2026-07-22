@@ -55,6 +55,9 @@ public class editPartController {
     }
 
     private LocalDate parseToLocalDate(String date){
+        if(date.equals("No date")){
+            return null;
+        }
         DateTimeFormatter formatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate localDate=LocalDate.parse(date.trim(),formatter);
         return localDate;

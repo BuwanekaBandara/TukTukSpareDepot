@@ -77,11 +77,14 @@
             <TableColumn fx:id="categoryCol" prefWidth="100.0" text="Category" />
             <TableColumn fx:id="dateCol" prefWidth="100.0" text="Date" />
             <TableColumn fx:id="LowStockThreshCol" prefWidth="120.0" text="Low Stock Thresh." />
-            <TableColumn fx:id="availabilityCol" prefWidth="100.0" text="Availability" />
+            <TableColumn fx:id="ImageCol" prefWidth="120.0" text="Image" />
         </columns>
          <BorderPane.margin>
             <Insets />
          </BorderPane.margin>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
       </TableView>
    </center>
    <bottom>

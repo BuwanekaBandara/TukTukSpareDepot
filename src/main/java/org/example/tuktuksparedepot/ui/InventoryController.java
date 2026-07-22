@@ -1,6 +1,5 @@
 package org.example.tuktuksparedepot.ui;
 
-import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,11 +8,14 @@ import javafx.scene.control.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import org.example.tuktuksparedepot.Operations.DealerOp;
-import org.example.tuktuksparedepot.objects.dealer;
 import org.example.tuktuksparedepot.objects.sparePart;
 import org.example.tuktuksparedepot.Operations.InventoryOp;
+
+import java.io.InputStream;
 import java.util.ArrayList;
 
 public class InventoryController {
@@ -30,7 +32,7 @@ public class InventoryController {
     @FXML private TableColumn<sparePart, String> categoryCol;
     @FXML private TableColumn<sparePart, String> dateCol;
     @FXML private TableColumn<sparePart, Integer> LowStockThreshCol;
-    @FXML private TableColumn<sparePart, String>availabilityCol;
+    @FXML private TableColumn<sparePart, String> ImageCol;
     @FXML private Button addPartBtn;
     @FXML private Button editPartBtn;
     @FXML private Button deletePartBtn;
@@ -56,20 +58,46 @@ public class InventoryController {
         categoryCol.setCellValueFactory(new PropertyValueFactory<>("category"));
         dateCol.setCellValueFactory(new PropertyValueFactory<>("date"));
         LowStockThreshCol.setCellValueFactory(new PropertyValueFactory<>("lowStockThreshold"));
-        availabilityCol.setCellValueFactory(cellData ->{
-            sparePart part=cellData.getValue();
-            String availability;
-            if(part.getQuantity()==0){
-                availability="Out of stock";
+        ImageCol.setCellValueFactory(new PropertyValueFactory<>("Img"));
+
+        ImageCol.setCellFactory(column-> new TableCell<sparePart, String>(){
+            private final ImageView imageView = new ImageView();
+            @Override
+            protected void updateItem(String item, boolean empty){
+                super.updateItem(item, empty);
+                if(empty || item == null){
+                    setText(null);
+                    setGraphic(null);
+                    return;
+                }
+                else if (item.equals("No image")){
+                    setText("No image");
+                    setGraphic(null);
+                    return;
+                }
+                try{
+                    String imagePath="/images/"+item;
+                    java.io.InputStream stream=getClass().getResourceAsStream(imagePath);
+                    if (stream != null) {
+                        javafx.scene.image.Image image = new javafx.scene.image.Image(stream);
+                        imageView.setImage(image);
+                        imageView.setFitWidth(60);
+                        imageView.setFitHeight(50);
+                        imageView.setPreserveRatio(true);
+                        setGraphic(imageView);
+                    }
+                    else{
+                        setText("No image");
+                        setGraphic(null);
+                    }
+                }
+                catch (Exception e){
+                    setText("Error");
+                    setGraphic(null);
+                }
             }
-            else if(part.getQuantity()<3){
-                availability="Low Stock";
-            }
-            else{
-                availability="In stock";
-            }
-            return new SimpleStringProperty(availability);
         });
+
     }
 
     private void loadInventoryTable(){
@@ -163,7 +191,9 @@ public class InventoryController {
         }
         else{
             inventoryOp.deletePart(selectedPart.getPartCode());
-            initialize();
+            loadInventoryTable();
+            updateTotal();
+            lowStockList();
             showAlert("Success","Part deleted successfully");
         }
     }

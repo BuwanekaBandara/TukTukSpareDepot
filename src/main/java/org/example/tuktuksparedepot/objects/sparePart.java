@@ -117,7 +117,7 @@ public class sparePart {
     }
 
     public String getImg() {
-        return this.img;
+        return this.img.trim();
     }
 
     public void setImg(String img) {
@@ -125,7 +125,7 @@ public class sparePart {
             this.img = "No image";
         }
         else {
-            this.img = img;
+            this.img = img.trim();
         }
     }
 
